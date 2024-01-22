@@ -1,0 +1,47 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2
+spec:
+  selector:
+    app: app2
+  ports:
+    - port: 80
+      targetPort: 8080
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app2
+  template:
+    metadata:
+      labels:
+        app: app2
+    spec:
+      containers:
+        - name: app2
+          image: nginx:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+
+# Ingress
+#apiVersion: extensions/v1
+#kind: Ingress
+#metadata:
+#  name: app2
+#spec:
+#  rules:
+#    - host: app2.192.168.64.17.nip.io
+#      http:
+#        paths:
+#          - backend:
+#              serviceName: app2
+#              servicePort: 80
