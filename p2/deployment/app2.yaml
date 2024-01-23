@@ -8,7 +8,8 @@ spec:
     app: app2
   ports:
     - port: 80
-      targetPort: 8080
+
+---
 
 # Deployment
 apiVersion: apps/v1
@@ -29,19 +30,5 @@ spec:
         - name: app2
           image: nginx:latest
           ports:
-            - containerPort: 8080
-          imagePullPolicy: Always
-
-# Ingress
-#apiVersion: extensions/v1
-#kind: Ingress
-#metadata:
-#  name: app2
-#spec:
-#  rules:
-#    - host: app2.192.168.64.17.nip.io
-#      http:
-#        paths:
-#          - backend:
-#              serviceName: app2
-#              servicePort: 80
+            - containerPort: 80
+          imagePullPolicy: IfNotPresent
