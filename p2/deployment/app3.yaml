@@ -32,3 +32,10 @@ spec:
           ports:
             - containerPort: 80
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: app3-volume
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: app3-volume
+          hostPath:
+            path: /vagrant/app3
