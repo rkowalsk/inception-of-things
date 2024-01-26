@@ -2,7 +2,8 @@
 
 set -e
 
-k3d cluster create p3
+k3d cluster create p3 --port 8080:80@loadbalancer --port 8443:443@loadbalancer
 kubectl create namespace argocd
-kubectl create namespace dev
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl create -n argocd -f ../confs/install.yaml
+kubectl apply -f ../confs/ingress.yaml -n argocd
+#kubectl create namespace dev
