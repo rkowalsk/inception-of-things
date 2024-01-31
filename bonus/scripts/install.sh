@@ -8,3 +8,5 @@ sudo chmod +x /usr/bin/kubectl
 sudo curl -L -o /usr/bin/argocd "https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64"
 sudo chmod +x /usr/bin/argocd
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+helm repo add gitlab https://charts.gitlab.io/
+helm repo update
