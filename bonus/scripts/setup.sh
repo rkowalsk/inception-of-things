@@ -12,8 +12,7 @@ kubectl apply -f ../confs/ingress_dev.yaml -n dev
 kubectl apply -f ../confs/ingress_gitlab.yaml -n gitlab
 helm install -n gitlab gitlab gitlab/gitlab \
 --set global.hosts.https="false" \
+--set tcp.22="gitlab/gitlab-gitlab-shell:22" \
+--set nginx-ingress.enabled=false \
+--set global.hosts.domain=localhost \
 --set global.ingress.configureCertmanager=false
-# --set global.hosts.domain=gitlab.example.com \
-# --set global.hosts.externalIP=127.0.0.1 \
-# --set nginx-ingress.enabled=false \
-# --set certmanager.install=false \
